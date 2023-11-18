@@ -10,8 +10,9 @@ namespace QLQuanCafe
         public App()
         {
             InitializeComponent();
-
-            MainPage = new LoginPage();
+            //DependencyService.Register<MockDataStore>();
+            /*MainPage = new LoginPage();*/
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:QLQuanCafe.ViewModels"
+             xmlns:local="clr-namespace:QLQuanCafe.Customers"
+             x:Class="QLQuanCafe.Views.SignupPage"
+             BackgroundImageSource="bglogin_x_d"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <ImageButton Source="arrow_left_line" 
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="Start"
+                         Command="{Binding PrevPage}"
+                         Margin="20, 20, 0, 0"/>
+            <Grid RowSpacing="25"
+                  RowDefinitions="auto, auto, auto, auto">
+                <StackLayout Grid.Row="3">
+                    <Label Text="Đăng Ký"
+                           FontSize="25"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold" />
+                    <Frame BorderColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15, 15, 15, 15"
+                           Padding="0"
+                           CornerRadius="50">
+                        <Frame BorderColor="White"
+                               BackgroundColor="Transparent"
+                               Margin="1"
+                               Padding="25, 0, 25, 0"
+                               HeightRequest="60"
+                               CornerRadius="50">
+                            <local:CustomEntry TextColor="White"
+                                               FontSize="18"
+                                               x:Name="txtUsername"
+                                               Placeholder="Tên Đăng Nhập"
+                                               PlaceholderColor="AliceBlue" />
+                        </Frame>
+                    </Frame>
+                    <Frame BorderColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15, 0, 15, 15"
+                           Padding="0"
+                           CornerRadius="50">
+                        <Frame BorderColor="White"
+                               BackgroundColor="Transparent"
+                               Margin="1"
+                               Padding="25, 0, 25, 0"
+                               HeightRequest="60"
+                               CornerRadius="50">
+                            <local:CustomEntry TextColor="White"
+                                               FontSize="18"
+                                               x:Name="txtPassword"
+                                               Placeholder="Mật Khẩu"
+                                               IsPassword="true"
+                                               PlaceholderColor="AliceBlue" />
+                        </Frame>
+                    </Frame>
+                    <Frame BorderColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15, 0, 15, 15"
+                           Padding="0"
+                           CornerRadius="50">
+                        <Frame BorderColor="White"
+                               BackgroundColor="Transparent"
+                               Margin="1"
+                               Padding="25, 0, 25, 0"
+                               HeightRequest="60"
+                               CornerRadius="50">
+                            <local:CustomEntry TextColor="White"
+                                               FontSize="18"
+                                               x:Name="txtRepassword"
+                                               Placeholder="Nhập Lại Mật khẩu"
+                                               IsPassword="true"
+                                               PlaceholderColor="AliceBlue" />
+                        </Frame>
+                    </Frame>
+                    <RelativeLayout Padding="25">
+                        <CheckBox Color="White"
+                                  IsChecked="False"
+                                  x:Name="chkShowPassword_Signup"
+                                  Margin="15, 0, 0, 0"
+                                  CheckedChanged="chkShowPassword_Signup_CheckedChanged" />
+                        <Label Text="Hiện mật khẩu"
+                               TextColor="White"
+                               FontSize="18"
+                               x:Name="lblShowPassword_Signup"
+                               RelativeLayout.XConstraint="50"
+                               RelativeLayout.YConstraint="3" />
+                    </RelativeLayout>
+                    <Button Text="Đăng ký"
+                            x:Name="btnSigup"
+                            BorderWidth="2"
+                            BorderColor="#3675EB"
+                            BackgroundColor="#363CEB"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            Margin="10, -20, 10, 0"
+                            FontSize="18"
+                            HeightRequest="60"
+                            CornerRadius="60" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
