@@ -1,12 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QLQuanCafe.Views.LoginPage">
+             xmlns:local="clr-namespace:QLQuanCafe.Customers"
+             xmlns:viewModel="clr-namespace:QLQuanCafe.ViewModels"
+             x:Class="QLQuanCafe.Views.LoginPage"
+             BackgroundImageSource="bglogin_x_d"
+             IsBusy="True"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <viewModel:LoginViewModel x:Key="LoginViewModel" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid RowSpacing="25"
+                  RowDefinitions="auto, auto, auto, auto">
+                <StackLayout Grid.Row="4">
+                    <Image Source="user_4_line_128px_white"
+                           Margin="0, -40, 0, 0" />
+                    <Label Text="Đăng Nhập"
+                           FontSize="25"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold" />
+                    <Frame BorderColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15"
+                           Padding="0"
+                           CornerRadius="50">
+                        <Frame BorderColor="White"
+                               BackgroundColor="Transparent"
+                               Margin="1"
+                               Padding="25, 0, 25, 0"
+                               HeightRequest="60"
+                               CornerRadius="50">
+                            <local:CustomEntry TextColor="White"
+                                               FontSize="18"
+                                               x:Name="txtUsername"
+                                               Placeholder="Tên Đăng Nhập"
+                                               PlaceholderColor="AliceBlue" />
+                        </Frame>
+                    </Frame>
+                    <Frame BorderColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15"
+                           Padding="0"
+                           CornerRadius="50">
+                        <Frame BorderColor="White"
+                               BackgroundColor="Transparent"
+                               Margin="1"
+                               Padding="25, 0, 25, 0"
+                               HeightRequest="60"
+                               CornerRadius="50">
+                            <local:CustomEntry TextColor="White"
+                                               FontSize="18"
+                                               x:Name="txtPassword"
+                                               Placeholder="Mật khẩu"
+                                               IsPassword="true"
+                                               PlaceholderColor="AliceBlue" />
+                        </Frame>
+                    </Frame>
+                    <RelativeLayout Padding="25">
+                        <CheckBox Color="White"
+                                  IsChecked="False"
+                                  x:Name="chkShowPassword"
+                                  Margin="15, 0, 0, 0"
+                                  CheckedChanged="chkShowPassword_CheckedChanged" />
+                        <Label Text="Hiện mật khẩu"
+                               TextColor="White"
+                               x:Name="lblShowPassword"
+                               FontSize="18"
+                               RelativeLayout.XConstraint="50"
+                               RelativeLayout.YConstraint="3" />
+                        <Button Text="Quên mật khẩu?"
+                                TextColor="White"
+                                x:Name="btnForgotPass"
+                                Command="{Binding OpenPageForgotPass}"
+                                FontSize="18"
+                                BackgroundColor="Transparent"
+                                RelativeLayout.XConstraint="205"
+                                RelativeLayout.YConstraint="-8"
+                                TextTransform="None" />
+                    </RelativeLayout>
+                    <Button Text="Đăng nhập"
+                            x:Name="btnLogin"
+                            TextColor="White"
+                            BorderWidth="2"
+                            BorderColor="#3675EB"
+                            BackgroundColor="#363CEB"
+                            Margin="10, 0, 10, 0"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HeightRequest="60"
+                            CornerRadius="50" />
+                    <Button Text="Đăng ký"
+                            x:Name="btnSigup"
+                            Command="{Binding OpenPageSignup}"
+                            TextColor="Red"
+                            BorderWidth="2"
+                            BorderColor="#3675EB"
+                            Margin="10, 0, 10, 0"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            HeightRequest="60"
+                            CornerRadius="60"
+                            BackgroundColor="#F0F0F0" />
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
