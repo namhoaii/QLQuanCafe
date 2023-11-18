@@ -39,5 +39,15 @@ namespace QLQuanCafe.Views
             bool isPass = chkShowPassword.IsChecked;
             txtPassword.IsPassword = !isPass;
         }
+
+        private void txtUsername_Focused(object sender, FocusEventArgs e)
+        {
+            (BindingContext as LoginViewModel).UsernameError = string.Empty;
+        }
+
+        private void txtPassword_Focused(object sender, FocusEventArgs e)
+        {
+            (BindingContext as LoginViewModel).PasswordError = string.Empty;
+        }
     }
 }

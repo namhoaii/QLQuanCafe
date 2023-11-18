@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace QLQuanCafe.ViewModels
 {
-    public class BaseViewModel
+    public class BaseViewModel : INotifyPropertyChanged
     {
         //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
