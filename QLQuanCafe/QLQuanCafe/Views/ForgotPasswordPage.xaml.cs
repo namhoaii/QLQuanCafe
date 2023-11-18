@@ -17,7 +17,12 @@ namespace QLQuanCafe.Views
         {
             InitializeComponent();
 
-            BindingContext = new ForgotPasswordViewModel();
+            BindingContext = new ForgotPasswordViewModel(this);
+        }
+
+        private void txtEmail_Focused(object sender, FocusEventArgs e)
+        {
+            (BindingContext as ForgotPasswordViewModel).EmailError = string.Empty;
         }
     }
 }

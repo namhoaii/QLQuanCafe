@@ -8,14 +8,14 @@
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout>
-            <ImageButton Source="arrow_left_line" 
+            <ImageButton Source="arrow_left_line"
                          BackgroundColor="Transparent"
                          HorizontalOptions="Start"
                          Command="{Binding PrevPage}"
-                         Margin="20, 20, 0, 0"/>
+                         Margin="20, 20, 0, 0" />
             <Grid RowSpacing="25"
                   RowDefinitions="auto, auto, auto, auto">
-                <StackLayout Grid.Row="3">
+                <StackLayout Grid.Row="2">
                     <Label Text="Đăng Ký"
                            FontSize="25"
                            TextColor="White"
@@ -29,16 +29,22 @@
                         <Frame BorderColor="White"
                                BackgroundColor="Transparent"
                                Margin="1"
-                               Padding="25, 0, 25, 0"
-                               HeightRequest="60"
+                               Padding="25, 7, 25, 7"
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
+                                               Text="{Binding Username}"
+                                               Focused="txtUsername_Focused"
                                                x:Name="txtUsername"
                                                Placeholder="Tên Đăng Nhập"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
                     </Frame>
+                    <Label Text="{Binding UsernameError}"
+                           FontSize="Small"
+                           TextColor="red"
+                           Margin="50, -20, 0, 0"
+                           RelativeLayout.XConstraint="50" />
                     <Frame BorderColor="White"
                            BackgroundColor="Transparent"
                            Margin="15, 0, 15, 15"
@@ -47,17 +53,47 @@
                         <Frame BorderColor="White"
                                BackgroundColor="Transparent"
                                Margin="1"
-                               Padding="25, 0, 25, 0"
-                               HeightRequest="60"
+                               Padding="25, 7, 25, 7"
+                               CornerRadius="50">
+                            <local:CustomEntry TextColor="White"
+                                               FontSize="18"
+                                               Text="{Binding Email}"
+                                               Focused="txtEmail_Focused"
+                                               x:Name="txtEmail"
+                                               Placeholder="Email"
+                                               PlaceholderColor="AliceBlue" />
+                        </Frame>
+                    </Frame>
+                    <Label Text="{Binding EmailError}"
+                           FontSize="Small"
+                           TextColor="red"
+                           Margin="50, -20, 0, 0"
+                           RelativeLayout.XConstraint="50" />
+                    <Frame BorderColor="White"
+                           BackgroundColor="Transparent"
+                           Margin="15, 0, 15, 15"
+                           Padding="0"
+                           CornerRadius="50">
+                        <Frame BorderColor="White"
+                               BackgroundColor="Transparent"
+                               Margin="1"
+                               Padding="25, 7, 25, 7"
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
                                                x:Name="txtPassword"
+                                               Text="{Binding Password}"
+                                               Focused="txtPassword_Focused"
                                                Placeholder="Mật Khẩu"
                                                IsPassword="true"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
                     </Frame>
+                    <Label Text="{Binding PasswordError}"
+                           FontSize="Small"
+                           TextColor="red"
+                           Margin="50, -20, 0, 0"
+                           RelativeLayout.XConstraint="50" />
                     <Frame BorderColor="White"
                            BackgroundColor="Transparent"
                            Margin="15, 0, 15, 15"
@@ -66,17 +102,23 @@
                         <Frame BorderColor="White"
                                BackgroundColor="Transparent"
                                Margin="1"
-                               Padding="25, 0, 25, 0"
-                               HeightRequest="60"
+                               Padding="25, 7, 25, 7"
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
+                                               Text="{Binding RePassword}"
                                                x:Name="txtRepassword"
+                                               Focused="txtRepassword_Focused"
                                                Placeholder="Nhập Lại Mật khẩu"
                                                IsPassword="true"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
                     </Frame>
+                    <Label Text="{Binding RePasswordError}"
+                           FontSize="Small"
+                           TextColor="red"
+                           Margin="50, -20, 0, 0"
+                           RelativeLayout.XConstraint="50" />
                     <RelativeLayout Padding="25">
                         <CheckBox Color="White"
                                   IsChecked="False"
@@ -95,6 +137,7 @@
                             BorderWidth="2"
                             BorderColor="#3675EB"
                             BackgroundColor="#363CEB"
+                            Command="{Binding CreateAccount}"
                             TextColor="White"
                             FontAttributes="Bold"
                             Margin="10, -20, 10, 0"

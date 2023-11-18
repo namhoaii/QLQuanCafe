@@ -30,16 +30,22 @@
                         <Frame BorderColor="White"
                                BackgroundColor="Transparent"
                                Margin="1"
-                               Padding="25, 0, 25, 0"
-                               HeightRequest="60"
+                               Padding="25, 7, 25, 7"
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
                                                x:Name="txtUsername"
+                                               Text="{Binding Username}"
                                                Placeholder="Tên Đăng Nhập"
+                                               Focused="txtUsername_Focused"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
                     </Frame>
+                    <Label Text="{Binding UsernameError}"
+                           FontSize="Small"
+                           TextColor="red"
+                           Margin="50, -20, 0, 0"
+                           RelativeLayout.XConstraint="50" />
                     <Frame BorderColor="White"
                            BackgroundColor="Transparent"
                            Margin="15"
@@ -48,17 +54,23 @@
                         <Frame BorderColor="White"
                                BackgroundColor="Transparent"
                                Margin="1"
-                               Padding="25, 0, 25, 0"
-                               HeightRequest="60"
+                               Padding="25, 7, 25, 7"
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
                                                x:Name="txtPassword"
                                                Placeholder="Mật khẩu"
+                                               Focused="txtPassword_Focused"
+                                               Text="{Binding Password}"
                                                IsPassword="true"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
                     </Frame>
+                    <Label Text="{Binding PasswordError}"
+                           FontSize="Small"
+                           TextColor="red"
+                           Margin="50, -20, 0, 0"
+                           RelativeLayout.XConstraint="50" />
                     <RelativeLayout Padding="25">
                         <CheckBox Color="White"
                                   IsChecked="False"
@@ -88,6 +100,7 @@
                             BorderColor="#3675EB"
                             BackgroundColor="#363CEB"
                             Margin="10, 0, 10, 0"
+                            Command="{Binding OpenMainPage}"
                             FontAttributes="Bold"
                             FontSize="18"
                             HeightRequest="60"
