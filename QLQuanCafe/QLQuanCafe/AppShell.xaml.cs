@@ -16,6 +16,12 @@ namespace QLQuanCafe
 		{
 			InitializeComponent ();
 
+            // Tạo ShellItem và ShellContent
+            var shellItem = new ShellItem { Route = "login", Title = "Login" };
+            var shellContent = new ShellContent { ContentTemplate = new DataTemplate(typeof(QLQuanCafe.Views.LoginPage)) };
+
+            shellItem.Items.Add(shellContent);
+            Items.Add(shellItem);
         }
     }
 }

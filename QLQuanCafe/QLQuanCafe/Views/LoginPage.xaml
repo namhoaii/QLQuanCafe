@@ -7,9 +7,6 @@
              BackgroundImageSource="bglogin_x_d"
              IsBusy="True"
              Shell.NavBarIsVisible="False">
-    <ContentPage.Resources>
-        <viewModel:LoginViewModel x:Key="LoginViewModel" />
-    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Grid RowSpacing="25"

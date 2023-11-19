@@ -1,7 +1,10 @@
-﻿using System;
+﻿using QLQuanCafe.Data;
+using QLQuanCafe.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace QLQuanCafe.ViewModels
@@ -33,15 +36,25 @@ namespace QLQuanCafe.ViewModels
 
         private async void OnCreateAccount(object obj)
         {
-            if (Validate())
+            if (await Validate())
             {
                 //Tiến hành tạo user
+
+                NguoiDung nguoiDung = new NguoiDung();
+                nguoiDung.TenNguoiDung = Username;
+                nguoiDung.MatKhau = Password;
+                nguoiDung.Email = Email;
+                nguoiDung.Quyen = 0;
+
+                await Database.NguoiDungDatabase.SaveNguoiDungAsync(nguoiDung);
+
+                /*-------------*/
                 await Page.DisplayAlert("Thông báo", "Thành Công!\n\nChúc mừng bạn đã tạo tài khoản thành công. Hãy tiến hành Đăng nhập", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
         }
 
-        private bool Validate()
+        private async Task<bool> Validate()
         {
             bool isVal = true;
 
@@ -77,12 +90,6 @@ namespace QLQuanCafe.ViewModels
 
             #region Rule
 
-            //Kiểm tra trùng username db
-            if (false)
-            {
-
-            }
-
             //Kiểm tra định dạng email
             string patternEmail = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
             if (!Regex.IsMatch(_email, patternEmail))
@@ -105,6 +112,28 @@ namespace QLQuanCafe.ViewModels
                 isVal = false;
                 RePasswordError = "Mật khẩu không trùng khớp";
             }
+
+            if (!isVal)
+                return isVal;
+            #endregion
+
+            #region Duplicates
+
+            //Kiểm tra trùng username db
+            NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungAsync(Username);
+            if (nguoiDung != null)
+            {
+                isVal = false;
+                UsernameError = "Tên Người Dùng đã tồn tại";
+            }
+            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+            //Kiểm tra trùng email
+            if (emailNguoiDung != null)
+            {
+                isVal = false;
+                EmailError = "Email đã được sử dụng vui lòng nhập email khác";
+            }
+
             #endregion
 
             return isVal;

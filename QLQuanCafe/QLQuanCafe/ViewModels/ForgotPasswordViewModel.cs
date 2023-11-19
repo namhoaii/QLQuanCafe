@@ -1,8 +1,12 @@
-﻿using System;
+﻿using QLQuanCafe.Data;
+using QLQuanCafe.Helpers;
+using QLQuanCafe.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -27,9 +31,24 @@ namespace QLQuanCafe.ViewModels
 
         private async void OnSend(object obj)
         {
-            if (isValidate())
+            if (await isValidate())
             {
-                //Xử lý gữi password về gmail
+                //Xử lý gữi password về gmail;
+                NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+                nguoiDung.MatKhau = Globals.RandomPass();
+
+                _ = await Database.NguoiDungDatabase.SaveNguoiDungAsync(nguoiDung);
+
+                string bodyMail = Globals.BodyEmail(Email, nguoiDung.TenNguoiDung, nguoiDung.MatKhau);
+
+                bool isResult = Globals.SendEmail(Globals.Subject, bodyMail, Email);
+
+                if(!isResult)
+                {
+                    await page.DisplayAlert("Thông báo", "Thất bại!\n\nCó lỗi xảy ra vui lòng thử lại sau vài phút!", "OK");
+                    return;
+                }
+
                 /*DisplayAlert("Alert", "You have been alerted", "OK");*/
                 await page.DisplayAlert("Thông báo", "Thành công!\n\nMật khẩu mới đã được gửi qua email của bạn!", "OK");
                 await Shell.Current.Navigation.PopAsync();
@@ -37,26 +56,30 @@ namespace QLQuanCafe.ViewModels
             }
         }
 
-        private bool isValidate()
+        private async Task<bool> isValidate()
         {
-            bool isVal = true;
-
             if(string.IsNullOrEmpty(_email))
             {
-                isVal = false;
                 EmailError = "Không được bỏ trống";
-                return isVal;
+                return false;
             }
 
             string pattern = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
             if(!Regex.IsMatch(_email, pattern))
             {
-                isVal = false;
                 EmailError = "Email không hợp lệ";
-                return isVal;
+                return false;
             }
 
-            return isVal;
+            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+            //Kiểm tra trùng email
+            if (emailNguoiDung == null)
+            {
+                EmailError = "Email không tồn tại";
+                return false;
+            }
+
+            return true;
         }
 
         public string Email

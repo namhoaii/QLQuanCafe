@@ -1,4 +1,5 @@
-﻿using QLQuanCafe.Models;
+﻿using QLQuanCafe.Data;
+using QLQuanCafe.Models;
 using QLQuanCafe.Views;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace QLQuanCafe.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        private User _user;
+        private Page Page;
 
         private string _username;
         private string _password;
@@ -21,35 +22,51 @@ namespace QLQuanCafe.ViewModels
         public Command OpenPageSignup { get; }
         public Command OpenMainPage { get; }
 
-        public LoginViewModel()
+        public LoginViewModel(Page page)
         {
+            Page = page;
+
             OpenPageForgotPass = new Command(OnForgotPassword);
-            OpenPageSignup = new Command(async () => await OnSigUp());
+            OpenPageSignup = new Command(OnSigUp);
             OpenMainPage = new Command(OnMainPage);
         }
 
-        private void OnMainPage(object obj)
+        private async void OnMainPage(object obj)
         {
             if (ValidateLogin())
             {
                 //tiến hành kiểm tra vào main page
+                NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungAsync(Username);
+                if (nguoiDung == null)
+                {
+                    _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
+                    return;
+                }
+
+                if(nguoiDung.MatKhau != Password)
+                {
+                    _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
+                    return;
+                }
+
+                await Shell.Current.Navigation.PushAsync(new MainPage());
             }
             else
             {
                 return;
             }
-            
+
         }
 
         private bool ValidateLogin()
         {
             bool isVal = true;
-            if(string.IsNullOrEmpty(Username))
+            if (string.IsNullOrEmpty(Username))
             {
                 UsernameError = "Không được bỏ trống";
                 isVal = false;
             }
-            if(string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(Password))
             {
                 PasswordError = "Không được bỏ trống";
                 isVal = false;
@@ -73,14 +90,14 @@ namespace QLQuanCafe.ViewModels
         {
             get => _usernameError;
             set => SetProperty(ref _usernameError, value);
-        }        
+        }
         public string PasswordError
         {
             get => _passwordError;
             set => SetProperty(ref _passwordError, value);
         }
 
-        private async Task OnSigUp()
+        private async void OnSigUp(object obj)
         {
             await Shell.Current.Navigation.PushAsync(new SignupPage());
         }
