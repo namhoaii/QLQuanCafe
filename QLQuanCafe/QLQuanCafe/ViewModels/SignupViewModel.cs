@@ -41,10 +41,11 @@ namespace QLQuanCafe.ViewModels
             if (await Validate())
             {
                 //Tiến hành tạo user
+                string hashPassword = BCrypt.Net.BCrypt.HashPassword(Password);
 
                 NguoiDung nguoiDung = new NguoiDung();
                 nguoiDung.TenNguoiDung = Username;
-                nguoiDung.MatKhau = Password;
+                nguoiDung.MatKhau = hashPassword;
                 nguoiDung.Email = Email;
                 nguoiDung.Quyen = 0;
 
