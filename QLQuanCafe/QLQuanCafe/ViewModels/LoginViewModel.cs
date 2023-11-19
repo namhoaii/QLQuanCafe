@@ -1,4 +1,5 @@
-﻿using QLQuanCafe.Data;
+﻿using Acr.UserDialogs;
+using QLQuanCafe.Data;
 using QLQuanCafe.Models;
 using QLQuanCafe.Views;
 using System;
@@ -33,6 +34,7 @@ namespace QLQuanCafe.ViewModels
 
         private async void OnMainPage(object obj)
         {
+            UserDialogs.Instance.ShowLoading("Xin chờ...");
             if (ValidateLogin())
             {
                 //tiến hành kiểm tra vào main page
@@ -40,19 +42,23 @@ namespace QLQuanCafe.ViewModels
                 if (nguoiDung == null)
                 {
                     _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
+                    UserDialogs.Instance.HideLoading();
                     return;
                 }
 
                 if(nguoiDung.MatKhau != Password)
                 {
                     _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
+                    UserDialogs.Instance.HideLoading();
                     return;
                 }
-
+                await Task.Delay(1000);
+                UserDialogs.Instance.HideLoading();
                 await Shell.Current.Navigation.PushAsync(new MainPage());
             }
             else
             {
+                UserDialogs.Instance.HideLoading();
                 return;
             }
 

@@ -1,4 +1,5 @@
-﻿using QLQuanCafe.Data;
+﻿using Acr.UserDialogs;
+using QLQuanCafe.Data;
 using QLQuanCafe.Models;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace QLQuanCafe.ViewModels
 
         private async void OnCreateAccount(object obj)
         {
+            UserDialogs.Instance.ShowLoading("Xin chờ...");
             if (await Validate())
             {
                 //Tiến hành tạo user
@@ -49,9 +51,12 @@ namespace QLQuanCafe.ViewModels
                 await Database.NguoiDungDatabase.SaveNguoiDungAsync(nguoiDung);
 
                 /*-------------*/
+                UserDialogs.Instance.HideLoading();
                 await Page.DisplayAlert("Thông báo", "Thành Công!\n\nChúc mừng bạn đã tạo tài khoản thành công. Hãy tiến hành Đăng nhập", "OK");
                 await Shell.Current.Navigation.PopAsync();
+                return;
             }
+            UserDialogs.Instance.HideLoading();
         }
 
         private async Task<bool> Validate()

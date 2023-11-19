@@ -1,4 +1,5 @@
-﻿using QLQuanCafe.Data;
+﻿using Acr.UserDialogs;
+using QLQuanCafe.Data;
 using QLQuanCafe.Helpers;
 using QLQuanCafe.Models;
 using System;
@@ -31,6 +32,7 @@ namespace QLQuanCafe.ViewModels
 
         private async void OnSend(object obj)
         {
+            UserDialogs.Instance.ShowLoading("Xin chờ...");
             if (await isValidate())
             {
                 //Xử lý gữi password về gmail;
@@ -46,14 +48,16 @@ namespace QLQuanCafe.ViewModels
                 if(!isResult)
                 {
                     await page.DisplayAlert("Thông báo", "Thất bại!\n\nCó lỗi xảy ra vui lòng thử lại sau vài phút!", "OK");
+                    UserDialogs.Instance.HideLoading();
                     return;
                 }
 
-                /*DisplayAlert("Alert", "You have been alerted", "OK");*/
+                UserDialogs.Instance.HideLoading();
                 await page.DisplayAlert("Thông báo", "Thành công!\n\nMật khẩu mới đã được gửi qua email của bạn!", "OK");
                 await Shell.Current.Navigation.PopAsync();
-
+                return;
             }
+            UserDialogs.Instance.HideLoading();
         }
 
         private async Task<bool> isValidate()
