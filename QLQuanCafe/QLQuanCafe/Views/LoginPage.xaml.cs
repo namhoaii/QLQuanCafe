@@ -26,12 +26,18 @@ namespace QLQuanCafe.Views
             };
             lblShowPassword.GestureRecognizers.Add(tapGestureRecognizer);
 
-            BindingContext = new LoginViewModel();
+            BindingContext = new LoginViewModel(this);
         }
 
         private void TxtUsername_Completed(object sender, EventArgs e)
         {
             txtPassword.Focus();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            txtUsername.Focus();
         }
 
         private void chkShowPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)

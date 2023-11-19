@@ -5,9 +5,12 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using QLQuanCafe.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,8 +33,27 @@ namespace QLQuanCafe.Droid
         }
 
         async void SimulateStartup()
-        {            
-            await Task.Delay(2000);             
+        {
+
+            // Kiểm tra sự tồn tại của tệp DB3
+            /*string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "Notes1.db3");*/
+            bool dbExists = File.Exists(Globals.PathDB);
+
+            if (!dbExists)
+            {
+                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
+                using (Stream stream = assembly.GetManifestResourceStream("QLQuanCafe.QLQuanCafe.db3"))
+                {
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        stream.CopyTo(memoryStream);
+
+                        File.WriteAllBytes(Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "QLQuanCafe.db3"), memoryStream.ToArray());
+                    }
+                }
+            }
+
+            await Task.Delay(1800); 
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
