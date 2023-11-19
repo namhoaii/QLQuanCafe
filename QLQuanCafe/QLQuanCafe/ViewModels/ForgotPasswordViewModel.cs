@@ -37,11 +37,12 @@ namespace QLQuanCafe.ViewModels
             {
                 //Xử lý gữi password về gmail;
                 NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
-                nguoiDung.MatKhau = Globals.RandomPass();
+                string passRandom = Globals.RandomPass();
+                nguoiDung.MatKhau = BCrypt.Net.BCrypt.HashPassword(passRandom);
 
                 _ = await Database.NguoiDungDatabase.SaveNguoiDungAsync(nguoiDung);
 
-                string bodyMail = Globals.BodyEmail(Email, nguoiDung.TenNguoiDung, nguoiDung.MatKhau);
+                string bodyMail = Globals.BodyEmail(Email, nguoiDung.TenNguoiDung, passRandom);
 
                 bool isResult = Globals.SendEmail(Globals.Subject, bodyMail, Email);
 

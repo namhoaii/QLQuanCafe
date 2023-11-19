@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using BCrypt.Net;
 using QLQuanCafe.Data;
 using QLQuanCafe.Models;
 using QLQuanCafe.Views;
@@ -46,13 +47,15 @@ namespace QLQuanCafe.ViewModels
                     return;
                 }
 
-                if(nguoiDung.MatKhau != Password)
+                string passwordHass = BCrypt.Net.BCrypt.HashPassword(Password);
+                bool isValid = BCrypt.Net.BCrypt.Verify(Password, passwordHass);
+                if(!isValid)
                 {
                     _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
                     UserDialogs.Instance.HideLoading();
                     return;
                 }
-                await Task.Delay(1000);
+
                 UserDialogs.Instance.HideLoading();
                 await Shell.Current.Navigation.PushAsync(new MainPage());
             }
