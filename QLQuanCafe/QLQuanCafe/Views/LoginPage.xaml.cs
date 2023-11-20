@@ -37,7 +37,10 @@ namespace QLQuanCafe.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            txtUsername.Focus();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                txtUsername.Focus();
+            });
         }
 
         private void chkShowPassword_CheckedChanged(object sender, CheckedChangedEventArgs e)
