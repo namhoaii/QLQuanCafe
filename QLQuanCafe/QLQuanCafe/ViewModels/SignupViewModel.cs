@@ -38,6 +38,7 @@ namespace QLQuanCafe.ViewModels
         private async void OnCreateAccount(object obj)
         {
             UserDialogs.Instance.ShowLoading("Xin chờ...");
+            await Task.Delay(500);
             if (await Validate())
             {
                 //Tiến hành tạo user

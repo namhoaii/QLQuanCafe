@@ -17,6 +17,7 @@ namespace QLQuanCafe.Helpers
         public static string Subject = "Thư xác nhận thay đổi mật khẩu";
         public static string PasswordEmail = "pbjkyvnsnaiutydt";
 
+        public static string KeyUsername = "Username";
 
         #endregion
 
@@ -43,7 +44,7 @@ namespace QLQuanCafe.Helpers
                 smtpClient.Send(mail);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -51,7 +52,7 @@ namespace QLQuanCafe.Helpers
 
         public static string RandomPass(int length = 8)
         {
-            string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?_-";
+            string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             Random random = new Random();
             char[] chars = new char[length];
             for (int i = 0; i < length; i++)

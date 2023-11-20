@@ -9,20 +9,6 @@ namespace QLQuanCafe
 {
     public partial class App : Application
     {
-        /*static Database database;
-
-        public static Database Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new Database(Globals.PathDB);
-                }
-                return database;
-            }
-        }*/
-
 
         public App()
         {

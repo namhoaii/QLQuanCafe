@@ -1,12 +1,14 @@
 ﻿using Acr.UserDialogs;
 using BCrypt.Net;
 using QLQuanCafe.Data;
+using QLQuanCafe.Helpers;
 using QLQuanCafe.Models;
 using QLQuanCafe.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace QLQuanCafe.ViewModels
@@ -36,6 +38,7 @@ namespace QLQuanCafe.ViewModels
         private async void OnMainPage(object obj)
         {
             UserDialogs.Instance.ShowLoading("Xin chờ...");
+            await Task.Delay(500);
             if (ValidateLogin())
             {
                 //tiến hành kiểm tra vào main page
@@ -55,6 +58,8 @@ namespace QLQuanCafe.ViewModels
                     UserDialogs.Instance.HideLoading();
                     return;
                 }
+                //lưu id vào store
+                await SecureStorage.SetAsync(Globals.KeyUsername, Username);
 
                 UserDialogs.Instance.HideLoading();
                 await Shell.Current.Navigation.PushAsync(new MainPage());

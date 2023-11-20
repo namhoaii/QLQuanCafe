@@ -33,6 +33,7 @@ namespace QLQuanCafe.ViewModels
         private async void OnSend(object obj)
         {
             UserDialogs.Instance.ShowLoading("Xin chờ...");
+            await Task.Delay(500);
             if (await isValidate())
             {
                 //Xử lý gữi password về gmail;

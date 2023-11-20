@@ -5,6 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome"
+                   x:Name="lblXinChao"
                    TextColor="Red"
                    FontSize="40"
                    VerticalOptions="CenterAndExpand"
