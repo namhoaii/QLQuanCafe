@@ -45,7 +45,7 @@ namespace QLQuanCafe.ViewModels
                 NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungAsync(Username);
                 if (nguoiDung == null)
                 {
-                    _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
+                    _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoản hoặc mật khẩu không chính xác", "OK");
                     UserDialogs.Instance.HideLoading();
                     return;
                 }
@@ -54,7 +54,7 @@ namespace QLQuanCafe.ViewModels
                 bool isValid = BCrypt.Net.BCrypt.Verify(Password, passwordHass);
                 if(!isValid)
                 {
-                    _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoảng hoặc mật khẩu không chính xác", "OK");
+                    _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoản hoặc mật khẩu không chính xác", "OK");
                     UserDialogs.Instance.HideLoading();
                     return;
                 }
