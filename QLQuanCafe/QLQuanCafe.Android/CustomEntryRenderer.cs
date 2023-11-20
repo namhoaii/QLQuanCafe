@@ -25,24 +25,6 @@ namespace QLQuanCafe.Droid
     {
         public CustomEntryRenderer(Context context) : base(context) { }
 
-        /*protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
-        {
-            base.OnElementChanged(e);
-
-            if (Control != null && e.NewElement != null)
-            {
-                // Set background to transparent
-                GradientDrawable gradientDrawable = new GradientDrawable();
-                gradientDrawable.SetColor(Android.Graphics.Color.Transparent);
-                Control.SetBackground(gradientDrawable);
-
-                // Remove suggestions
-                Control.InputType = InputTypes.TextFlagNoSuggestions;
-
-                // Set hint color (you can set a specific color here instead of Transparent)
-                Control.SetHintTextColor(Android.Graphics.Color.AliceBlue); // Set a color that contrasts with your background
-            }
-        }*/
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);

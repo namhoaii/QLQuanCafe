@@ -57,6 +57,7 @@
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
+                                               Keyboard="Email"
                                                Text="{Binding Email}"
                                                Focused="txtEmail_Focused"
                                                x:Name="txtEmail"
