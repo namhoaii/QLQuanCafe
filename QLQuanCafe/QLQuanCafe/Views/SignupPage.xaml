@@ -15,7 +15,7 @@
                          Margin="20, 20, 0, 0" />
             <Grid RowSpacing="25"
                   RowDefinitions="auto, auto, auto, auto">
-                <StackLayout Grid.Row="2">
+                <StackLayout Grid.Row="1">
                     <Label Text="Đăng Ký"
                            FontSize="25"
                            TextColor="White"
@@ -62,7 +62,8 @@
                                                Focused="txtEmail_Focused"
                                                x:Name="txtEmail"
                                                Placeholder="Email"
-                                               PlaceholderColor="AliceBlue" />
+                                               PlaceholderColor="AliceBlue"
+                                               MaxLength="30" />
                         </Frame>
                     </Frame>
                     <Label Text="{Binding EmailError}"
@@ -86,7 +87,8 @@
                                                Focused="txtSDT_Focused"
                                                x:Name="txtSDT"
                                                Placeholder="Số Điện Thoại"
-                                               PlaceholderColor="AliceBlue" />
+                                               PlaceholderColor="AliceBlue"
+                                               MaxLength="10" />
                         </Frame>
                     </Frame>
                     <Label Text="{Binding SDTError}"
