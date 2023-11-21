@@ -19,22 +19,30 @@ namespace QLQuanCafe.Data
 
         public Task<List<NguoiDung>> GetNguoiDungAsync()
         {
-            //Get all notes.
+            //Get all 
             return database.Table<NguoiDung>().ToListAsync();
         }
 
         public Task<NguoiDung> GetNguoiDungAsync(string tenNguoiDung)
         {
-            // Get a specific note.
+            // Get a specific
             return database.Table<NguoiDung>()
                             .Where(i => i.TenNguoiDung == tenNguoiDung)
                             .FirstOrDefaultAsync();
         }
         public Task<NguoiDung> GetNguoiDungEmailAsync(string email)
         {
-            // Get a specific note.
+            // Get a specific 
             return database.Table<NguoiDung>()
                             .Where(i => i.Email == email)
+                            .FirstOrDefaultAsync();
+        }
+        
+        public Task<NguoiDung> GetNguoiDungSDTAsync(string sdt)
+        {
+            // Get a specific 
+            return database.Table<NguoiDung>()
+                            .Where(i => i.SDT == sdt)
                             .FirstOrDefaultAsync();
         }
 
@@ -42,19 +50,19 @@ namespace QLQuanCafe.Data
         {
             if (nguoiDung.IDNguoiDung != 0)
             {
-                // Update an existing note.
+                // Update an existing 
                 return database.UpdateAsync(nguoiDung);
             }
             else
             {
-                // Save a new note.
+                // Save a new 
                 return database.InsertAsync(nguoiDung);
             }
         }
 
         public Task<int> DeleteNguoiDungAsync(NguoiDung nguoiDung)
         {
-            // Delete a note.
+            // Delete 
             return database.DeleteAsync(nguoiDung);
         }
 

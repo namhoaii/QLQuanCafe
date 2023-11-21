@@ -19,6 +19,7 @@ namespace QLQuanCafe.Views
 
             txtUsername.Completed += TxtUsername_Completed;
             txtEmail.Completed += TxtEmail_Completed;
+            txtSDT.Completed += TxtSDT_Completed;
             txtPassword.Completed += TxtPassword_Completed;
 
             BindingContext = new SignupViewModel(this);
@@ -31,6 +32,7 @@ namespace QLQuanCafe.Views
             lblShowPassword_Signup.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
+
         #region Events Press enter to continue
 
         private void TxtPassword_Completed(object sender, EventArgs e)
@@ -40,12 +42,17 @@ namespace QLQuanCafe.Views
 
         private void TxtEmail_Completed(object sender, EventArgs e)
         {
-            txtPassword.Focus();
+            txtSDT.Focus();
         }
 
         private void TxtUsername_Completed(object sender, EventArgs e)
         {
             txtEmail.Focus();
+        }
+
+        private void TxtSDT_Completed(object sender, EventArgs e)
+        {
+            txtPassword.Focus();
         }
 
         #endregion
@@ -79,6 +86,13 @@ namespace QLQuanCafe.Views
             (BindingContext as SignupViewModel).EmailError = string.Empty;
         }
 
+        private void txtSDT_Focused(object sender, FocusEventArgs e)
+        {
+            (BindingContext as SignupViewModel).SDTError = string.Empty;
+        }
+
         #endregion
+
+
     }
 }

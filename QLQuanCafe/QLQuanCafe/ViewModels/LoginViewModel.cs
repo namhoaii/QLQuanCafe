@@ -50,9 +50,8 @@ namespace QLQuanCafe.ViewModels
                     return;
                 }
 
-                string passwordHass = BCrypt.Net.BCrypt.HashPassword(Password);
-                bool isValid = BCrypt.Net.BCrypt.Verify(Password, passwordHass);
-                if(!isValid)
+                bool isValid = BCrypt.Net.BCrypt.Verify(Password, nguoiDung.MatKhau);
+                if (!isValid)
                 {
                     _ = Page.DisplayAlert("Thông báo", "Thông tin tài khoản hoặc mật khẩu không chính xác", "OK");
                     UserDialogs.Instance.HideLoading();
