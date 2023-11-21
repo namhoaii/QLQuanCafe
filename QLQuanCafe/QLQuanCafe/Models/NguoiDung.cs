@@ -12,6 +12,7 @@ namespace QLQuanCafe.Models
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
         public string Email { get; set; }
+        public string SDT { get; set; }
         public int Quyen { get; set; }
     }
 }
