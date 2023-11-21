@@ -16,11 +16,13 @@ namespace QLQuanCafe.ViewModels
 
         private string _username;
         private string _email;
+        private string _sdt;
         private string _password;
         private string _rePassword;
         private string _passwordError;
         private string _usernameError;
         private string _emailError;
+        private string _sdtError;
         private string _rePasswordError;
 
         public Command PrevPage { get; }
@@ -77,6 +79,11 @@ namespace QLQuanCafe.ViewModels
                 isVal = false;
                 EmailError = "Không được bỏ trống";
             }
+            if (string.IsNullOrEmpty(_sdt))
+            {
+                isVal = false;
+                SDTError = "Không được bỏ trống";
+            }
             if (string.IsNullOrEmpty(_password))
             {
                 isVal = false;
@@ -103,6 +110,14 @@ namespace QLQuanCafe.ViewModels
             {
                 isVal = false;
                 EmailError = "Email không hợp lệ";
+            }
+
+            //Kiểm tra định dạng SDT (VN)
+            string patternSDT = @"(84|0[3|5|7|8|9])+([0-9]{8})\b";
+            if (!Regex.IsMatch(_sdt, patternSDT))
+            {
+                isVal = false;
+                SDTError = "SĐT không hợp lệ\nChỉ chấp nhập SĐT có đầu số 03, 05, 07, 08, 09";
             }
 
             //Kiểm tra pass mạnh
@@ -133,12 +148,21 @@ namespace QLQuanCafe.ViewModels
                 isVal = false;
                 UsernameError = "Tên Người Dùng đã tồn tại";
             }
-            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+
             //Kiểm tra trùng email
+            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
             if (emailNguoiDung != null)
             {
                 isVal = false;
                 EmailError = "Email đã được sử dụng vui lòng nhập email khác";
+            }
+            
+            //Kiểm tra trùng SĐT
+            NguoiDung sdtNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungSDTAsync(SDT);
+            if (sdtNguoiDung != null)
+            {
+                isVal = false;
+                SDTError = "SĐT đã được sử dụng vui lòng nhập SĐT khác";
             }
 
             #endregion
@@ -155,11 +179,13 @@ namespace QLQuanCafe.ViewModels
 
         public string Username { get => _username; set => SetProperty(ref _username, value); }
         public string Email { get => _email; set => SetProperty(ref _email, value); }
+        public string SDT { get => _sdt; set => SetProperty(ref _sdt, value); }
         public string Password { get => _password; set => SetProperty(ref _password, value); }
         public string RePassword { get => _rePassword; set => SetProperty(ref _rePassword, value); }
         public string PasswordError { get => _passwordError; set => SetProperty(ref _passwordError, value); }
         public string UsernameError { get => _usernameError; set => SetProperty(ref _usernameError, value); }
         public string EmailError { get => _emailError; set => SetProperty(ref _emailError, value); }
+        public string SDTError { get => _sdtError; set => SetProperty(ref _sdtError, value); }
         public string RePasswordError { get => _rePasswordError; set => SetProperty(ref _rePasswordError, value); }
 
         #endregion
