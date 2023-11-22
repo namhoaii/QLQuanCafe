@@ -28,7 +28,7 @@ namespace QLQuanCafe.Views
                 string username = await SecureStorage.GetAsync(Globals.KeyUsername);
                 if(!string.IsNullOrEmpty(username))
                 {
-                    lblXinChao.Text = "Xin chào " + username;
+                    lblTenNhanVien.Text = username;
                 }
             }
             catch (Exception)
