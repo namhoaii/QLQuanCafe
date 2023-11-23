@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QLQuanCafe.Views.DetailMenuPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Bàn số 1"
+                       x:Name="lblTenBan"
+                       FontSize="26"
+                       Padding="10, 10, 0, 0"
+                       FontAttributes="Bold,Italic"
+                       TextColor="#CC3300" />
+                <Label HeightRequest="30"
+                       Margin="10"
+                       x:Name="lblTongTien"
+                       FontSize="18"
+                       TextColor="#FFA500"
+                       FontAttributes="Bold,Italic"
+                       Text="Tổng tiền: 0"
+                       HorizontalOptions="End"
+                       BackgroundColor="White" />
+                <Label Text="Chọn món:"
+                       FontSize="18"
+                       FontAttributes="Italic"
+                       TextColor="#000"/>
+                <Frame Margin="0, 0, 0, 10"
+                       BorderColor="#1D77D2"
+                       HeightRequest="40"
+                       BackgroundColor="#E3F1FF">
+                    <RelativeLayout>
+                        <Image Source="cafe"
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               RelativeLayout.XConstraint="-18"
+                               RelativeLayout.YConstraint="-18"
+                               Aspect="AspectFill" />
+                        <Label Text="Cafe"
+                               FontSize="20"
+                               TextColor="#000"
+                               FontAttributes="Bold"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="-20" />
+                        <Label Text="10,000đ"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="#FF6A6A"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="20" />
+                        <Label Text="SL: 0"
+                               FontSize="18"
+                               x:Name="lblCafe"
+                               FontAttributes="Italic,Bold"
+                               TextColor="#eb4924"
+                               HorizontalOptions="End"
+                               RelativeLayout.XConstraint="220"
+                               RelativeLayout.YConstraint="-18" />
+                        <Stepper Minimum="0"
+                                 Maximum="20"
+                                 Increment="1"
+                                 ValueChanged="sppCafe_ValueChanged"
+                                 x:Name="sppCafe"
+                                 HorizontalOptions="Center"
+                                 RelativeLayout.XConstraint="160"
+                                 RelativeLayout.YConstraint="13" />
+                    </RelativeLayout>
+                </Frame>
+                <Frame Margin="0, 0, 0, 10"
+                       BorderColor="#1D77D2"
+                       HeightRequest="40"
+                       BackgroundColor="#E3F1FF">
+                    <RelativeLayout>
+                        <Image Source="cafe"
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               RelativeLayout.XConstraint="-18"
+                               RelativeLayout.YConstraint="-18"
+                               Aspect="AspectFill" />
+                        <Label Text="Đá me"
+                               FontSize="20"
+                               TextColor="#000"
+                               FontAttributes="Bold"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="-20" />
+                        <Label Text="12,000đ"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="#FF6A6A"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="20" />
+                        <Label Text="SL: 0"
+                               FontSize="18"
+                               x:Name="lblDaMe"
+                               FontAttributes="Italic,Bold"
+                               TextColor="#eb4924"
+                               HorizontalOptions="End"
+                               RelativeLayout.XConstraint="220"
+                               RelativeLayout.YConstraint="-18" />
+                        <Stepper Minimum="0"
+                                 Maximum="20"
+                                 Increment="1"
+                                 ValueChanged="sppDame_ValueChanged"
+                                 x:Name="sppDame"
+                                 HorizontalOptions="Center"
+                                 RelativeLayout.XConstraint="160"
+                                 RelativeLayout.YConstraint="13" />
+                    </RelativeLayout>
+                </Frame>
+                <Frame Margin="0, 0, 0, 10"
+                       BorderColor="#1D77D2"
+                       HeightRequest="40"
+                       BackgroundColor="#E3F1FF">
+                    <RelativeLayout>
+                        <Image Source="cafe"
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               RelativeLayout.XConstraint="-18"
+                               RelativeLayout.YConstraint="-18"
+                               Aspect="AspectFill" />
+                        <Label Text="Rau má"
+                               FontSize="20"
+                               TextColor="#000"
+                               FontAttributes="Bold"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="-20" />
+                        <Label Text="15,000đ"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="#FF6A6A"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="20" />
+                        <Label Text="SL: 0"
+                               FontSize="18"
+                               x:Name="lblRauMa"
+                               FontAttributes="Italic,Bold"
+                               TextColor="#eb4924"
+                               HorizontalOptions="End"
+                               RelativeLayout.XConstraint="220"
+                               RelativeLayout.YConstraint="-18" />
+                        <Stepper Minimum="0"
+                                 Maximum="20"
+                                 Increment="1"
+                                 ValueChanged="sppRauMa_ValueChanged"
+                                 x:Name="sppRauMa"
+                                 HorizontalOptions="Center"
+                                 RelativeLayout.XConstraint="160"
+                                 RelativeLayout.YConstraint="13" />
+                    </RelativeLayout>
+                </Frame>
+                <Frame Margin="0, 0, 0, 10"
+                       BorderColor="#1D77D2"
+                       HeightRequest="40"
+                       BackgroundColor="#E3F1FF">
+                    <RelativeLayout>
+                        <Image Source="cafe"
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               RelativeLayout.XConstraint="-18"
+                               RelativeLayout.YConstraint="-18"
+                               Aspect="AspectFill" />
+                        <Label Text="Trà đào"
+                               FontSize="20"
+                               TextColor="#000"
+                               FontAttributes="Bold"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="-20" />
+                        <Label Text="20,000đ"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="#FF6A6A"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="20" />
+                        <Label Text="SL: 0"
+                               FontSize="18"
+                               x:Name="lblTraDao"
+                               FontAttributes="Italic,Bold"
+                               TextColor="#eb4924"
+                               HorizontalOptions="End"
+                               RelativeLayout.XConstraint="220"
+                               RelativeLayout.YConstraint="-18" />
+                        <Stepper Minimum="0"
+                                 Maximum="20"
+                                 Increment="1"
+                                 ValueChanged="sppTraDao_ValueChanged"
+                                 x:Name="sppTraDao"
+                                 HorizontalOptions="Center"
+                                 RelativeLayout.XConstraint="160"
+                                 RelativeLayout.YConstraint="13" />
+                    </RelativeLayout>
+                </Frame>
+                <Frame Margin="0, 0, 0, 10"
+                       BorderColor="#1D77D2"
+                       HeightRequest="40"
+                       BackgroundColor="#E3F1FF">
+                    <RelativeLayout>
+                        <Image Source="cafe"
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               RelativeLayout.XConstraint="-18"
+                               RelativeLayout.YConstraint="-18"
+                               Aspect="AspectFill" />
+                        <Label Text="Trà sữa"
+                               FontSize="20"
+                               TextColor="#000"
+                               FontAttributes="Bold"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="-20" />
+                        <Label Text="20,000đ"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="#FF6A6A"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="20" />
+                        <Label Text="SL: 0"
+                               FontSize="18"
+                               x:Name="lblTraSua"
+                               FontAttributes="Italic,Bold"
+                               TextColor="#eb4924"
+                               HorizontalOptions="End"
+                               RelativeLayout.XConstraint="220"
+                               RelativeLayout.YConstraint="-18" />
+                        <Stepper Minimum="0"
+                                 Maximum="20"
+                                 Increment="1"
+                                 ValueChanged="sppTraSua_ValueChanged"
+                                 x:Name="sppTraSua"
+                                 HorizontalOptions="Center"
+                                 RelativeLayout.XConstraint="160"
+                                 RelativeLayout.YConstraint="13" />
+                    </RelativeLayout>
+                </Frame>
+                <Frame Margin="0, 0, 0, 10"
+                       BorderColor="#1D77D2"
+                       HeightRequest="40"
+                       BackgroundColor="#E3F1FF">
+                    <RelativeLayout>
+                        <Image Source="cafe"
+                               WidthRequest="75"
+                               HeightRequest="75"
+                               RelativeLayout.XConstraint="-18"
+                               RelativeLayout.YConstraint="-18"
+                               Aspect="AspectFill" />
+                        <Label Text="Nước Ngọt"
+                               FontSize="20"
+                               TextColor="#000"
+                               FontAttributes="Bold"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="-20" />
+                        <Label Text="10,000đ"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="#FF6A6A"
+                               RelativeLayout.XConstraint="65"
+                               RelativeLayout.YConstraint="20" />
+                        <Label Text="SL: 0"
+                               FontSize="18"
+                               x:Name="lblNuocNgot"
+                               FontAttributes="Italic,Bold"
+                               TextColor="#eb4924"
+                               HorizontalOptions="End"
+                               RelativeLayout.XConstraint="220"
+                               RelativeLayout.YConstraint="-18" />
+                        <Stepper Minimum="0"
+                                 Maximum="20"
+                                 Increment="1"
+                                 ValueChanged="sppNuocNgot_ValueChanged"
+                                 x:Name="sppNuocNgot"
+                                 HorizontalOptions="Center"
+                                 RelativeLayout.XConstraint="160"
+                                 RelativeLayout.YConstraint="13" />
+                    </RelativeLayout>
+                </Frame>
+                <StackLayout>
+                    <Button Text="Hoàn Thành"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            Margin="60, 10, 60, 40"
+                            Padding="10"
+                            CornerRadius="50"
+                            x:Name="btnHoanThanh"
+                            TextColor="LightGray"
+                            Clicked="btnHoanThanh_Clicked"
+                            BackgroundColor="Green"/>
+                </StackLayout>
+                
+            </StackLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
