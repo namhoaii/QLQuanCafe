@@ -46,8 +46,14 @@ namespace QLQuanCafe.Droid
                 gradientDrawable.SetColor(Android.Graphics.Color.Transparent);
                 Control.SetBackground(gradientDrawable);
 
-                // Remove suggestions
-                Control.InputType = InputTypes.TextFlagNoSuggestions;
+                /*// Remove suggestions
+                Control.InputType = InputTypes.TextFlagNoSuggestions;*/
+                // Set input type to number
+                if (((Entry)e.NewElement).Keyboard == Keyboard.Numeric)
+                {
+                    // Set input type to number if the Entry's Keyboard is set to Numeric
+                    Control.InputType = InputTypes.ClassNumber;
+                }
 
                 // Set hint color
                 Control.SetHintTextColor(Android.Graphics.Color.AliceBlue);

@@ -61,7 +61,12 @@
                            HeightRequest="100"
                            BackgroundColor="#E3F1FF"
                            CornerRadius="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
+                                                  CommandParameter="1" />
+                        </Frame.GestureRecognizers>
                         <AbsoluteLayout>
+                            
                             <Label Text="Bàn số 1"
                                    TextColor="#000011"
                                    FontSize="20"
@@ -89,6 +94,10 @@
                            HeightRequest="100"
                            BackgroundColor="#FF8888"
                            CornerRadius="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
+                                                  CommandParameter="2" />
+                        </Frame.GestureRecognizers>
                         <AbsoluteLayout>
                             <Label Text="Bàn số 2"
                                    TextColor="#000011"
@@ -117,6 +126,10 @@
                            HeightRequest="100"
                            BackgroundColor="#E3F1FF"
                            CornerRadius="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
+                                                  CommandParameter="3" />
+                        </Frame.GestureRecognizers>
                         <AbsoluteLayout>
                             <Label Text="Bàn số 3"
                                    TextColor="#000011"
@@ -145,6 +158,10 @@
                            HeightRequest="100"
                            BackgroundColor="#E3F1FF"
                            CornerRadius="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
+                                                  CommandParameter="4" />
+                        </Frame.GestureRecognizers>
                         <AbsoluteLayout>
                             <Label Text="Bàn số 4"
                                    TextColor="#000011"
@@ -173,6 +190,10 @@
                            HeightRequest="100"
                            BackgroundColor="#E3F1FF"
                            CornerRadius="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
+                                                  CommandParameter="5" />
+                        </Frame.GestureRecognizers>
                         <AbsoluteLayout>
                             <Label Text="Bàn số 5"
                                    TextColor="#000011"
@@ -201,6 +222,10 @@
                            HeightRequest="100"
                            BackgroundColor="#E3F1FF"
                            CornerRadius="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
+                                                  CommandParameter="6" />
+                        </Frame.GestureRecognizers>
                         <AbsoluteLayout>
                             <Label Text="Bàn số 6"
                                    TextColor="#000011"
