@@ -41,7 +41,7 @@ namespace QLQuanCafe.Views
 
         void TongTien()
         {
-            int slCafe = Convert.ToInt32(lblCafe.Text.Replace("SL: ",""));
+            int slCafe = Convert.ToInt32(lblCafe.Text.Replace("SL: ", ""));
             int slDaMe = Convert.ToInt32(lblDaMe.Text.Replace("SL: ", ""));
             int slRauMa = Convert.ToInt32(lblRauMa.Text.Replace("SL: ", ""));
             int slTraDao = Convert.ToInt32(lblTraDao.Text.Replace("SL: ", ""));
@@ -100,95 +100,49 @@ namespace QLQuanCafe.Views
 
             int soTien = slCafe * 10000 + slDaMe * 12000 + slRauMa * 15000 + slTraSua * 20000 + slTraDao * 20000 + slNuocNgot * 10000;
 
-            if(soTien == 0)
+            if (soTien == 0)
             {
                 await DisplayAlert("Thông báo", "Vui lòng chọn ít nhất 1 món", "OK");
                 return;
             }
 
-            string username = await SecureStorage.GetAsync(Globals.KeyUsername);
-            NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungAsync(username);
+            List<ThongKeSL> thongKeSL = await Database.ThongKeSLDatabase.GetSP();
 
+            foreach (ThongKeSL item in thongKeSL)
+            {
+                switch (item.TenSanPham)
+                {
+                    case "Cafe":
+                        item.SoLuong = slCafe;
+                        item.ThanhTien = slCafe * item.DonGia;
+                        break;
+                    case "Đá me":
+                        item.SoLuong = slDaMe;
+                        item.ThanhTien = slDaMe * item.DonGia;
+                        break;
+                    case "Rau má":
+                        item.SoLuong = slRauMa;
+                        item.ThanhTien = slRauMa * item.DonGia;
+                        break;
+                    case "Trà đào":
+                        item.SoLuong = slTraDao;
+                        item.ThanhTien = slTraDao * item.DonGia;
+                        break;
+                    case "Trà sữa":
+                        item.SoLuong = slTraSua;
+                        item.ThanhTien = slTraSua * item.DonGia;
+                        break;
+                    case "Nước ngọt":
+                        item.SoLuong = slNuocNgot;
+                        item.ThanhTien = slNuocNgot * item.DonGia;
+                        break;
+                    default:
+                        break;
 
-            HoaDon hoaDon = new HoaDon()
-            {
-                IDBan = IDBan,
-                MaNV = nguoiDung.IDNguoiDung,
-                NgayLap = DateTime.Now.ToString("dd/MM/yyyy")
-            };
-
-            await Database.HoaDonDatabase.SaveHoaDonAsync(hoaDon);
-            int idHoaDon = await Database.HoaDonDatabase.GetMaxHoaDonIdAsync();
-
-            if(slCafe > 0)
-            {
-                ChiTietHD chiTiet = new ChiTietHD()
-                {
-                    IDHoaDon = idHoaDon,
-                    IDSanPham = 1,
-                    SoLuong = slCafe,
-                    ThanhTien = slCafe * 10000
-                };
-                await Database.ChiTietHDDatabase.SaveChiTietHDAsync(chiTiet);
-            }
-            if (slDaMe > 0)
-            {
-                ChiTietHD chiTiet = new ChiTietHD()
-                {
-                    IDHoaDon = idHoaDon,
-                    IDSanPham = 2,
-                    SoLuong = slDaMe,
-                    ThanhTien = slDaMe * 12000
-                };
-                await Database.ChiTietHDDatabase.SaveChiTietHDAsync(chiTiet);
-            }
-            if (slRauMa > 0)
-            {
-                ChiTietHD chiTiet = new ChiTietHD()
-                {
-                    IDHoaDon = idHoaDon,
-                    IDSanPham = 3,
-                    SoLuong = slRauMa,
-                    ThanhTien = slRauMa * 15000
-                };
-                await Database.ChiTietHDDatabase.SaveChiTietHDAsync(chiTiet);
-            }
-            if (slTraDao > 0)
-            {
-                ChiTietHD chiTiet = new ChiTietHD()
-                {
-                    IDHoaDon = idHoaDon,
-                    IDSanPham = 4,
-                    SoLuong = slTraDao,
-                    ThanhTien = slTraDao * 20000
-                };
-                await Database.ChiTietHDDatabase.SaveChiTietHDAsync(chiTiet);
-            }
-            if (slTraSua > 0)
-            {
-                ChiTietHD chiTiet = new ChiTietHD()
-                {
-                    IDHoaDon = idHoaDon,
-                    IDSanPham = 5,
-                    SoLuong = slTraSua,
-                    ThanhTien = slTraSua * 20000
-                };
-                await Database.ChiTietHDDatabase.SaveChiTietHDAsync(chiTiet);
-            }
-            if (slNuocNgot > 0)
-            {
-                ChiTietHD chiTiet = new ChiTietHD()
-                {
-                    IDHoaDon = idHoaDon,
-                    IDSanPham = 6,
-                    SoLuong = slNuocNgot,
-                    ThanhTien = slNuocNgot * 10000
-                };
-                await Database.ChiTietHDDatabase.SaveChiTietHDAsync(chiTiet);
+                }
             }
 
-            await DisplayAlert("Thông báo", "Thanh toán thành công!", "OK");
-            await Shell.Current.Navigation.PopAsync();
+            await Shell.Current.Navigation.PushAsync(new BillPage(IDBan, thongKeSL));
         }
     }
 }

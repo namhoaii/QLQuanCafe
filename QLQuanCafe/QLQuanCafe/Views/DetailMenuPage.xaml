@@ -24,9 +24,8 @@
                 <Label Text="Chọn món:"
                        FontSize="18"
                        FontAttributes="Italic"
-                       TextColor="#000"/>
+                       TextColor="#000" />
                 <Frame Margin="0, 0, 0, 10"
-                       
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
@@ -67,7 +66,6 @@
                     </RelativeLayout>
                 </Frame>
                 <Frame Margin="0, 0, 0, 10"
-                       
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
@@ -108,7 +106,6 @@
                     </RelativeLayout>
                 </Frame>
                 <Frame Margin="0, 0, 0, 10"
-                       
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
@@ -149,7 +146,6 @@
                     </RelativeLayout>
                 </Frame>
                 <Frame Margin="0, 0, 0, 10"
-                       
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
@@ -190,7 +186,6 @@
                     </RelativeLayout>
                 </Frame>
                 <Frame Margin="0, 0, 0, 10"
-                      
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
@@ -231,7 +226,6 @@
                     </RelativeLayout>
                 </Frame>
                 <Frame Margin="0, 0, 0, 10"
-                       
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
@@ -281,11 +275,9 @@
                             x:Name="btnHoanThanh"
                             TextColor="LightGray"
                             Clicked="btnHoanThanh_Clicked"
-                            BackgroundColor="Green"/>
+                            BackgroundColor="Green" />
                 </StackLayout>
-                
             </StackLayout>
-            
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
