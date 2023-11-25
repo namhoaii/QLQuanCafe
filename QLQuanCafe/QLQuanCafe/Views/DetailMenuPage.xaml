@@ -69,7 +69,7 @@
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
-                        <Image Source="cafe"
+                        <Image Source="dame"
                                WidthRequest="75"
                                HeightRequest="75"
                                RelativeLayout.XConstraint="-18"
@@ -109,7 +109,7 @@
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
-                        <Image Source="cafe"
+                        <Image Source="rauma"
                                WidthRequest="75"
                                HeightRequest="75"
                                RelativeLayout.XConstraint="-18"
@@ -149,7 +149,7 @@
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
-                        <Image Source="cafe"
+                        <Image Source="tradao"
                                WidthRequest="75"
                                HeightRequest="75"
                                RelativeLayout.XConstraint="-18"
@@ -189,7 +189,7 @@
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
-                        <Image Source="cafe"
+                        <Image Source="trasua"
                                WidthRequest="75"
                                HeightRequest="75"
                                RelativeLayout.XConstraint="-18"
@@ -229,7 +229,7 @@
                        HeightRequest="40"
                        BackgroundColor="#E3F1FF">
                     <RelativeLayout>
-                        <Image Source="cafe"
+                        <Image Source="nuocngot"
                                WidthRequest="75"
                                HeightRequest="75"
                                RelativeLayout.XConstraint="-18"

@@ -60,8 +60,8 @@ namespace QLQuanCafe.ViewModels
                 //lưu id vào store
                 await SecureStorage.SetAsync(Globals.KeyUsername, Username);
 
-                UserDialogs.Instance.HideLoading();
                 await Shell.Current.Navigation.PushAsync(new MainPage());
+                UserDialogs.Instance.HideLoading();
             }
             else
             {

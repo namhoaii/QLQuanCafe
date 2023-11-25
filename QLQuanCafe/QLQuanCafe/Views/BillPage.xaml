@@ -108,6 +108,7 @@
                                Margin="20, 0, 10, 0"
                                x:Name="entTienKhachDua"
                                Keyboard="Numeric"
+                               MaxLength="8"
                                Unfocused="entTienKhachDua_Unfocused"
                                FontSize="20" />
                         <Label Padding="20, 0, 10, 0"
