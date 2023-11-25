@@ -49,7 +49,7 @@ namespace QLQuanCafe.ViewModels
                 NguoiDung nguoiDung = new NguoiDung();
                 nguoiDung.TenNguoiDung = Username;
                 nguoiDung.MatKhau = hashPassword;
-                nguoiDung.Email = Email;
+                nguoiDung.Email = Email.ToLower();
                 nguoiDung.SDT = SDT;
                 nguoiDung.Quyen = 0;
 
@@ -114,7 +114,8 @@ namespace QLQuanCafe.ViewModels
             }
 
             //Kiểm tra định dạng SDT (VN)
-            string patternSDT = @"(84|0[3|5|7|8|9])+([0-9]{8})\b";
+            //string patternSDT = @"(84|0[3|5|7|8|9])+([0-9]{8})\b";
+            string patternSDT = @"^0[35789][0-9]{8}$";
             if (!Regex.IsMatch(_sdt, patternSDT))
             {
                 isVal = false;
@@ -151,7 +152,7 @@ namespace QLQuanCafe.ViewModels
             }
 
             //Kiểm tra trùng email
-            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email.ToLower());
             if (emailNguoiDung != null)
             {
                 isVal = false;

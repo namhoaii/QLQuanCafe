@@ -29,12 +29,32 @@ namespace QLQuanCafe.Views
             entTienKhachDua.TextChanged += EntTienKhachDua_TextChanged;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool result = await DisplayAlert("Xác nhận", "Bạn có chắc chắn muốn HỦY đơn?", "Đồng ý", "Thoát");
+
+                if (result)
+                {
+                    await Shell.Current.Navigation.PushAsync(new MainPage());
+                }
+            });
+
+            return true;
+        }
+
         private void EntTienKhachDua_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(entTienKhachDua.Text))
                 return;
-            entTienKhachDua.Text = Convert.ToInt32(entTienKhachDua.Text.Replace(",", "").Replace(".", ""))
-                                        .ToString("#,###");
+            int soTien = Convert.ToInt32(entTienKhachDua.Text.Replace(",", "").Replace(".", ""));
+            if (soTien >= 500000)
+            {
+                entTienKhachDua.Text = 500000.ToString("#,###");
+                return;
+            }    
+            entTienKhachDua.Text = soTien.ToString("#,###");
         }
 
         protected async override void OnAppearing()

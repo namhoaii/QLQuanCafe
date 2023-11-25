@@ -37,7 +37,7 @@ namespace QLQuanCafe.ViewModels
             if (await isValidate())
             {
                 //Xử lý gữi password về gmail;
-                NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+                NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email.ToLower());
                 string passRandom = Globals.RandomPass();
                 nguoiDung.MatKhau = BCrypt.Net.BCrypt.HashPassword(passRandom);
 
@@ -77,7 +77,7 @@ namespace QLQuanCafe.ViewModels
                 return false;
             }
 
-            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email);
+            NguoiDung emailNguoiDung = await Database.NguoiDungDatabase.GetNguoiDungEmailAsync(Email.ToLower());
             //Kiểm tra trùng email
             if (emailNguoiDung == null)
             {

@@ -29,6 +29,21 @@ namespace QLQuanCafe.Views
             BindingContext = new LoginViewModel(this);
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool result = await DisplayAlert("Xác nhận", "Bạn có muốn đóng ứng dụng?", "Đồng ý", "Hủy");
+
+                if (result)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            });
+
+            return true;
+        }
+
         private void TxtUsername_Completed(object sender, EventArgs e)
         {
             txtPassword.Focus();
