@@ -18,6 +18,8 @@ namespace QLQuanCafe.Data
         static HoaDonDatabase hoaDonDatabase;
         static ChiTietHDDatabase chitietHDDatabase;
 
+        static ThongKeSLDatabase thongKeSLDatabase;
+
 
         public static SQLiteAsyncConnection Connection
         {
@@ -100,6 +102,18 @@ namespace QLQuanCafe.Data
                     chitietHDDatabase = new ChiTietHDDatabase(Connection);
                 }
                 return chitietHDDatabase;
+            }
+        }
+        
+        public static ThongKeSLDatabase ThongKeSLDatabase
+        {
+            get
+            {
+                if (thongKeSLDatabase == null)
+                {
+                    thongKeSLDatabase = new ThongKeSLDatabase(Connection);
+                }
+                return thongKeSLDatabase;
             }
         }
 

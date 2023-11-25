@@ -6,18 +6,31 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="GoGi"
-                       TextColor="#FF0099"
-                       FontSize="40"
-                       FontAttributes="Bold"
-                       Padding="30, 0, 0, 0"
-                       BackgroundColor="#87CEEB" />
+                <Grid BackgroundColor="#87CEEB"
+                      Padding="0, 0, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="GoGi"
+                           TextColor="#FF0099"
+                           FontSize="40"
+                           FontAttributes="Bold"
+                           Padding="30, 0, 0, 0" />
+                    <ImageButton Source="exit"
+                                 WidthRequest="20"
+                                 Grid.Column="1"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="EndAndExpand"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding Logout}" />
+                </Grid>
                 <Grid Padding="30, 10, 20, 10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label>
@@ -66,7 +79,6 @@
                                                   CommandParameter="1" />
                         </Frame.GestureRecognizers>
                         <AbsoluteLayout>
-                            
                             <Label Text="Bàn số 1"
                                    TextColor="#000011"
                                    FontSize="20"
@@ -84,15 +96,14 @@
                                    AbsoluteLayout.LayoutBounds="0, 1.2, 200, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
                         </AbsoluteLayout>
-                        <!-- Nội dung bên trong Frame -->
                     </Frame>
                     <Frame Grid.Column="1"
                            Grid.Row="0"
                            Margin="5"
-                           BorderColor="#FF0000"
+                           BorderColor="#1D77D2"
                            WidthRequest="100"
                            HeightRequest="100"
-                           BackgroundColor="#FF8888"
+                           BackgroundColor="#E3F1FF"
                            CornerRadius="20">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding FrameTappedCommand}"
@@ -105,18 +116,17 @@
                                    FontSize="20"
                                    AbsoluteLayout.LayoutBounds="0, 0, 100, 30"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
-                            <Label Text="10:00 AM"
+                            <Label Text=""
                                    TextColor="#777777"
                                    FontSize="16"
                                    AbsoluteLayout.LayoutBounds="0, 0.5, 100, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
-                            <Label Text="300,000"
+                            <Label Text=""
                                    TextColor="#000099"
                                    FontSize="20"
                                    AbsoluteLayout.LayoutBounds="0, 1.2, 200, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
                         </AbsoluteLayout>
-                        <!-- Nội dung bên trong Frame -->
                     </Frame>
                     <Frame Grid.Column="0"
                            Grid.Row="1"
@@ -148,7 +158,6 @@
                                    AbsoluteLayout.LayoutBounds="0, 1.2, 200, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
                         </AbsoluteLayout>
-                        <!-- Nội dung bên trong Frame -->
                     </Frame>
                     <Frame Grid.Column="1"
                            Grid.Row="1"
@@ -180,7 +189,6 @@
                                    AbsoluteLayout.LayoutBounds="0, 1.2, 200, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
                         </AbsoluteLayout>
-                        <!-- Nội dung bên trong Frame -->
                     </Frame>
                     <Frame Grid.Column="0"
                            Grid.Row="2"
@@ -212,7 +220,6 @@
                                    AbsoluteLayout.LayoutBounds="0, 1.2, 200, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
                         </AbsoluteLayout>
-                        <!-- Nội dung bên trong Frame -->
                     </Frame>
                     <Frame Grid.Column="1"
                            Grid.Row="2"
@@ -244,9 +251,15 @@
                                    AbsoluteLayout.LayoutBounds="0, 1.2, 200, 40"
                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
                         </AbsoluteLayout>
-                        <!-- Nội dung bên trong Frame -->
                     </Frame>
                 </Grid>
+                <Button Text="Xem Thống Kê"
+                        Font="18"
+                        x:Name="btnXemThongKe"
+                        FontAttributes="Bold"
+                        HeightRequest="60"
+                        Command="{Binding OpenReportPage}"
+                        IsVisible="false" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

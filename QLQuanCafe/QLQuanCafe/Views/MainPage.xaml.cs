@@ -29,9 +29,14 @@ namespace QLQuanCafe.Views
             try
             {
                 string username = await SecureStorage.GetAsync(Globals.KeyUsername);
-                if(!string.IsNullOrEmpty(username))
+                if (!string.IsNullOrEmpty(username))
                 {
                     lblTenNhanVien.Text = username;
+                }
+                NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungAsync(username);
+                if(nguoiDung.IDNguoiDung == 1)
+                {
+                    btnXemThongKe.IsVisible = true;
                 }
             }
             catch (Exception)
