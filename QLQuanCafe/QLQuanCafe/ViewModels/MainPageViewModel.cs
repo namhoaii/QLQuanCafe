@@ -44,8 +44,8 @@ namespace QLQuanCafe.ViewModels
             UserDialogs.Instance.ShowLoading("Xin chờ...");
             await Task.Delay(500);
             int IDBan = Convert.ToInt32(obj);
-            UserDialogs.Instance.HideLoading();
             await Shell.Current.Navigation.PushAsync(new DetailMenuPage(IDBan));
+            UserDialogs.Instance.HideLoading();
         }
     }
 }

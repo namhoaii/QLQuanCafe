@@ -26,6 +26,13 @@ namespace QLQuanCafe.Data
 
             return database.QueryAsync<ThongKeSL>(query);
         }
+        
+        public Task<List<ThongKeSL>> GetSP()
+        {
+            var query = @"SELECT * FROM SanPham";
+
+            return database.QueryAsync<ThongKeSL>(query);
+        }
 
     }
 }
