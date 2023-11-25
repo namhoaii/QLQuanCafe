@@ -24,6 +24,21 @@ namespace QLQuanCafe.Views
             BindingContext = new MainPageViewModel();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool result = await DisplayAlert("Xác nhận", "Bạn có muốn đóng ứng dụng?", "Đồng ý", "Hủy");
+
+                if (result)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            });
+
+            return true;
+        }
+
         void AddTable(Grid grid, int columnIndex, int rowIndex, Ban ban)
         {
             //Tạo 1 label
