@@ -13,10 +13,30 @@ namespace QLQuanCafe.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         public ICommand FrameTappedCommand { get; }
+        public ICommand Logout { get; }
+        public ICommand OpenReportPage { get; }
 
         public MainPageViewModel()
         {
             FrameTappedCommand = new Command(OnFrameSelected);
+            Logout = new Command(OnLogout);
+            OpenReportPage = new Command(OnReportPage);
+        }
+
+        private async void OnReportPage(object obj)
+        {
+            UserDialogs.Instance.ShowLoading("Xin chờ...");
+            await Task.Delay(300);
+            UserDialogs.Instance.HideLoading();
+            await Shell.Current.Navigation.PushAsync(new Report());
+        }
+
+        private async void OnLogout(object obj)
+        {
+            UserDialogs.Instance.ShowLoading("Xin chờ...");
+            await Task.Delay(300);
+            UserDialogs.Instance.HideLoading();
+            await Shell.Current.Navigation.PushAsync(new LoginPage());
         }
 
         private async void OnFrameSelected(object obj)

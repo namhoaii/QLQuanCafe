@@ -50,5 +50,14 @@ namespace QLQuanCafe.Data
             // Delete 
             return database.DeleteAsync(HoaDon);
         }
+
+        public async Task<int> GetMaxHoaDonIdAsync()
+        {
+            var query = "SELECT MAX(IDHoaDon) FROM HoaDon"; 
+
+            var maxId = await database.ExecuteScalarAsync<int?>(query);
+
+            return maxId ?? 0;
+        }
     }
 }
