@@ -27,8 +27,8 @@ namespace QLQuanCafe.ViewModels
         {
             UserDialogs.Instance.ShowLoading("Xin chờ...");
             await Task.Delay(300);
-            UserDialogs.Instance.HideLoading();
             await Shell.Current.Navigation.PushAsync(new Report());
+            UserDialogs.Instance.HideLoading();
         }
 
         private async void OnLogout(object obj)

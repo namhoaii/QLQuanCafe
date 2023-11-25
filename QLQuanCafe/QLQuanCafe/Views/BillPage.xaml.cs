@@ -31,6 +31,8 @@ namespace QLQuanCafe.Views
 
         private void EntTienKhachDua_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (string.IsNullOrEmpty(entTienKhachDua.Text))
+                return;
             entTienKhachDua.Text = Convert.ToInt32(entTienKhachDua.Text.Replace(",", "").Replace(".", ""))
                                         .ToString("#,###");
         }
@@ -106,11 +108,24 @@ namespace QLQuanCafe.Views
             mainStack.Children.Add(stackLayout);
         }
 
-        private void entTienKhachDua_Unfocused(object sender, FocusEventArgs e)
+        private async void entTienKhachDua_Unfocused(object sender, FocusEventArgs e)
         {
+            if (string.IsNullOrEmpty(entTienKhachDua.Text))
+            {
+                spnTienTralai.Text = string.Empty;
+                return;
+            }
+
             int tienKhachDua = Convert.ToInt32(entTienKhachDua.Text.Replace(",", "").Replace(".", ""));
 
             int tongTien = Convert.ToInt32(spnTongTien.Text.Replace(",", "").Replace(".", ""));
+
+            if (tienKhachDua < tongTien)
+            {
+                await DisplayAlert("Thông báo", "Vui lòng nhập số tiền lớn hơn số tiền cần thanh toán.", "OK");
+                entTienKhachDua.Focus();
+                return;
+            }
 
             //UserDialogs.Instance.
 
@@ -120,6 +135,17 @@ namespace QLQuanCafe.Views
 
         private async void btnThanhToanTien_Clicked(object sender, EventArgs e)
         {
+            bool result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig
+            {
+                Title = "Xác nhận",
+                Message = "Xác nhận Thanh toán?",
+                OkText = "Đồng Ý",
+                CancelText = "Thoát"
+            });
+
+            if (!result)
+                return;
+
             string username = await SecureStorage.GetAsync(Globals.KeyUsername);
             NguoiDung nguoiDung = await Database.NguoiDungDatabase.GetNguoiDungAsync(username);
 
