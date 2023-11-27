@@ -52,9 +52,10 @@ namespace QLQuanCafe.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Device.BeginInvokeOnMainThread(() =>
+            Device.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
                 txtUsername.Focus();
+                return false;
             });
         }
 

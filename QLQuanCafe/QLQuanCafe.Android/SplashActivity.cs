@@ -35,8 +35,6 @@ namespace QLQuanCafe.Droid
         async void SimulateStartup()
         {
 
-            // Kiểm tra sự tồn tại của tệp DB3
-            /*string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "Notes1.db3");*/
             bool dbExists = File.Exists(Globals.PathDB);
 
             if (!dbExists)
