@@ -18,6 +18,8 @@ namespace QLQuanCafe.Views
     {
         int IDBan;
 
+        private bool _isUpdating;
+
         List<ThongKeSL> ThongKeSL;
 
         public BillPage(int iDBan, List<ThongKeSL> thongKeSL)
@@ -46,15 +48,32 @@ namespace QLQuanCafe.Views
 
         private void EntTienKhachDua_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(entTienKhachDua.Text))
+            if (_isUpdating)
                 return;
-            int soTien = Convert.ToInt32(entTienKhachDua.Text.Replace(",", "").Replace(".", ""));
-            if (soTien >= 500000)
+
+            string text = e.NewTextValue;
+
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            text = text.Replace(",", "").Replace(".", "");
+
+            if (!int.TryParse(text, out int number))
             {
-                entTienKhachDua.Text = 500000.ToString("#,###");
+                entTienKhachDua.Text = e.OldTextValue;
+                _isUpdating = false;
                 return;
-            }    
-            entTienKhachDua.Text = soTien.ToString("#,###");
+            }
+
+            _isUpdating = true;
+
+            if (number > 1000000)
+                number = 1000000;
+
+            entTienKhachDua.Text = number.ToString("#,##0");
+
+            _isUpdating = false;
+
         }
 
         protected async override void OnAppearing()
@@ -138,6 +157,13 @@ namespace QLQuanCafe.Views
 
             int tienKhachDua = Convert.ToInt32(entTienKhachDua.Text.Replace(",", "").Replace(".", ""));
 
+            if(tienKhachDua % 1000 != 0)
+            {
+                await DisplayAlert("Thông báo", "Vui lòng nhập đúng mệnh giá.", "OK");
+                entTienKhachDua.Focus();
+                return;
+            }
+
             int tongTien = Convert.ToInt32(spnTongTien.Text.Replace(",", "").Replace(".", ""));
 
             if (tienKhachDua < tongTien)
@@ -147,9 +173,7 @@ namespace QLQuanCafe.Views
                 return;
             }
 
-            //UserDialogs.Instance.
-
-            spnTienTralai.Text = (tienKhachDua - tongTien).ToString("#,###");
+            spnTienTralai.Text = (tienKhachDua - tongTien).ToString("#,##0");
 
         }
 
