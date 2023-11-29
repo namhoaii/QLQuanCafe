@@ -67,8 +67,8 @@ namespace QLQuanCafe.Views
 
             _isUpdating = true;
 
-            if (number > 1000000)
-                number = 1000000;
+            if (number > 2000000)
+                number = 2000000;
 
             entTienKhachDua.Text = number.ToString("#,##0");
 

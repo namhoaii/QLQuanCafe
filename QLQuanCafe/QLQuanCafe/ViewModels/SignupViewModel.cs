@@ -105,6 +105,14 @@ namespace QLQuanCafe.ViewModels
 
             #region Rule
 
+            //Kiểm định dạng User
+            string patternUser = @"^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$";
+            if (!Regex.IsMatch(_username, patternUser))
+            {
+                isVal = false;
+                UsernameError = "Tên đăng nhập ít nhất 1 ký tự là chữ và chỉ chấp nhận các ký tự chữ và số";
+            }
+
             //Kiểm tra định dạng email
             string patternEmail = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
             if (!Regex.IsMatch(_email, patternEmail))
