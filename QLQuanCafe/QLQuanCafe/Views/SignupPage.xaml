@@ -36,6 +36,7 @@
                                                Text="{Binding Username}"
                                                Focused="txtUsername_Focused"
                                                x:Name="txtUsername"
+                                               MaxLength="20"
                                                Placeholder="Tên Đăng Nhập"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
@@ -113,6 +114,7 @@
                                                Text="{Binding Password}"
                                                Focused="txtPassword_Focused"
                                                Placeholder="Mật Khẩu"
+                                               MaxLength="20"
                                                IsPassword="true"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
@@ -139,6 +141,7 @@
                                                Focused="txtRepassword_Focused"
                                                Placeholder="Nhập Lại Mật khẩu"
                                                IsPassword="true"
+                                               MaxLength="20"
                                                PlaceholderColor="AliceBlue" />
                         </Frame>
                     </Frame>

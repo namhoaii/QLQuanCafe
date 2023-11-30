@@ -30,6 +30,7 @@
                                CornerRadius="50">
                             <local:CustomEntry TextColor="White"
                                                FontSize="18"
+                                               MaxLength="20"
                                                x:Name="txtUsername"
                                                Text="{Binding Username}"
                                                Placeholder="Tên Đăng Nhập"
@@ -56,6 +57,7 @@
                                                FontSize="18"
                                                x:Name="txtPassword"
                                                Placeholder="Mật khẩu"
+                                               MaxLength="20"
                                                Focused="txtPassword_Focused"
                                                Text="{Binding Password}"
                                                IsPassword="true"
