@@ -13,9 +13,9 @@ namespace QLQuanCafe.Helpers
 
         public static string PathDB = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "QLQuanCafe.db3");
 
-        public static string FromEmail = "itnautomations@gmail.com";
+        public static string FromEmail = "Nhập email của bạn";
         public static string Subject = "Thư xác nhận thay đổi mật khẩu";
-        public static string PasswordEmail = "pbjkyvnsnaiutydt";
+        public static string PasswordEmail = "app password";
 
         public static string KeyUsername = "Username";
 
